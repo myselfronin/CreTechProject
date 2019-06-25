@@ -17,11 +17,15 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $users  = App\User::pluck('user_id')->toArray();
+    $roles = App\Role::pluck('role_id')->toArray();
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'password' => Str::random(9), // password
+        'role_id' => $faker->randomElement($roles),
+        'phone_no' => $faker->unique()->numberBetween(980,9900),
+        'email_verified_by' => $faker->randomElement($users),
     ];
 });
