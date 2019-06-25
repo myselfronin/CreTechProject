@@ -26,16 +26,6 @@ class CreateUsersTable extends Migration
             $table->integer('email_verified_by')->unsigned()->nullable();
             $table->dateTime('email_verified_at')->nullable();
             $table->enum('user_status', ['requested',  'verified',  'approved',  'suspended',  'deleted'])->nullable();
-
-            $table->index('role','role_idx');
-            $table->index('email_verified_by','verified_by_idx');
-
-            $table->foreign('role')
-                ->references('role_id')->on('roles');
-
-            $table->foreign('email_verified_by')
-                ->references('user_id')->on('users');
-
             $table->timestamps();
 
         });

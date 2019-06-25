@@ -24,16 +24,6 @@ class CreateApplicationsTable extends Migration
             $table->dateTime('approved_at')->nullable();
             $table->integer('approved_by')->nullable();
             $table->enum('applications_status', ['pending',  'approved',  'rejected'])->nullable();
-
-            $table->index('product','product_idx');
-            $table->index('user','user_idx');
-
-            $table->foreign('product')
-                ->references('product_id')->on('products');
-
-            $table->foreign('user')
-                ->references('user_id')->on('users');
-
             $table->timestamps();
 
         });

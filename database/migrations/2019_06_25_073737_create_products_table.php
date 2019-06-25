@@ -27,12 +27,6 @@ class CreateProductsTable extends Migration
             $table->dateTime('product_verified_at')->nullable();
             $table->integer('product_verified_by')->nullable();
             $table->enum('product_state', ['requested',  'approved',  'suspended',  'canceled',  'expired',  'accepted'])->nullable();
-
-            $table->index('product_owned_by','product_owned_by_idx');
-
-            $table->foreign('product_owned_by')
-                ->references('user_id')->on('users');
-
             $table->timestamps();
 
         });
