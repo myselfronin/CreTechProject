@@ -21,11 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('email', 45)->nullable();
             $table->string('password', 45)->nullable();
             $table->integer('role_id')->unsigned()->nullable();
-            $table->foreign('role_id')->references('role_id')->on('roles');
+            $table->foreign('role_id')->references('role_id')->on('roles')->onDelete('cascade');
             $table->string('phone_no', 15)->nullable();
             $table->dateTime('email_created_at')->nullable();
             $table->integer('email_verified_by')->unsigned()->nullable();
-            $table->foreign('email_verified_by')->references('user_id')->on('users');
+            $table->foreign('email_verified_by')->references('user_id')->on('users')->onDelete('cascade');
             $table->dateTime('email_verified_at')->nullable();
             $table->enum('user_status', ['requested',  'verified',  'approved',  'suspended',  'deleted'])->nullable();
             $table->timestamps();

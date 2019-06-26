@@ -17,5 +17,13 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::get('/users','UsersController@index');
-Route::post('/users','UsersController@store');
+
+//Route::get('/users','UsersController@index');
+//Route::post('/user','UsersController@store');
+//Route::get('/user/{id}','UsersController@show');
+//Route::put('/user/{id}', 'UsersController@update');
+//Route::delete('/user/{id}','UsersController@destroy');
+
+
+Route::apiResource('products','API\ProductController');
+Route::apiResource('applications','API\ApplicationController');
