@@ -13,3 +13,7 @@
 
 Route::get('/','LandingPageController@index');
 Route::post('/user','UsersController@store')->name('user_register');
+
+//For creating role
+Route::get('/role','RoleController@index');
+Route::post('/role','RoleController@store')->name('create_role');
