@@ -49,6 +49,8 @@ class RoleController extends Controller
         $role = new Role;
         $role->role = $request->input('role');
         $role->save();
+
+        return response()->json($role);
     }
 
 
