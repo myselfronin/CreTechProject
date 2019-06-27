@@ -22,4 +22,8 @@ Route::apiResource('users','API\UserController');
 Route::apiResource('products','API\ProductController');
 Route::apiResource('applications','API\ApplicationController');
 
+Route::get('/roles','API\RoleController@index');
+Route::post('/roles','API\RoleController@store');
+Route::delete('/roles/{id}','API\RoleController@destroy');
+
 
