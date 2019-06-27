@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','LandingPageController@index');
+Route::post('/user','UsersController@store')->name('user_register');
