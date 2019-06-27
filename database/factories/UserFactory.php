@@ -22,10 +22,8 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
         'password' => Str::random(9), // password
         'role_id' => $faker->randomElement($roles),
         'phone_no' => $faker->unique()->numberBetween(980,9900),
-        'email_verified_by' => $faker->randomElement($users),
     ];
 });

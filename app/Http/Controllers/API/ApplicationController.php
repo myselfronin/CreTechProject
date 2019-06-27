@@ -56,7 +56,7 @@ class ApplicationController extends Controller
         $application->user_id = $request->get('user_id');
         $application->save();
 
-        return response()->json($application);
+        return response()->json($application,200);
      }
 
     /**
@@ -68,7 +68,10 @@ class ApplicationController extends Controller
      *      @OA\Response(
      *          response="200",
      *          description="Everything is fine",
-     *
+     *      ),
+     *      @OA\Response(
+     *          response="404",
+     *          description = "Application not found",
      *      )
      * )
      *
@@ -78,8 +81,12 @@ class ApplicationController extends Controller
     public function show($id)
     {
         $application = Application::where('application_id',$id)->first();
+        if(!$application)
+        {
+            return response()->json("No application with that id",404);
+        }
 
-        return response()->json($application);
+        return response()->json($application,200);
     }
 
     /**
@@ -90,7 +97,6 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -102,8 +108,11 @@ class ApplicationController extends Controller
      *      @OA\Response(
      *          response="200",
      *          description="Everything is fine",
-     *
-     *      )
+     *      ),
+     *      @OA\Response(
+     *          response="404",
+     *          description="Application with that id not found",
+     * )
      * )
      *
      * @param  int  $id
@@ -112,8 +121,12 @@ class ApplicationController extends Controller
     public function destroy($id)
     {
         $application = Application::where('application_id', $id)->first();
+        if(!$application)
+        {
+            return response()->json('Application not found',404);
+        }
         $application->delete();
 
-        return response()->json('Deleted');
+        return response()->json('Deleted',200);
     }
 }

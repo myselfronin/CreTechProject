@@ -16,16 +16,13 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->increments('application_id');
-            $table->integer('product')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
-            //$table->foreign('user_id')->references('user_id')->on('users');
+            $table->bigIncrements('application_id');
+            $table->integer('product');
+            $table->integer('user_id');
             $table->dateTime('applied_date')->nullable();
-            $table->string('status', 45)->nullable();
             $table->dateTime('approved_at')->nullable();
             $table->integer('approved_by')->nullable();
-            //$table->foreign('approved_by')->references('user_id')->on('users');
-            $table->enum('applications_status', ['pending',  'approved',  'rejected'])->nullable();
+            $table->enum('applications_status', ['pending',  'approved',  'rejected'])->default('pending');
             $table->timestamps();
 
         });

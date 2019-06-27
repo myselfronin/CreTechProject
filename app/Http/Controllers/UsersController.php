@@ -87,14 +87,13 @@ class UsersController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $user = User::where('user_id',3)->first();
+        $user = User::where('user_id',$id)->first();
         if(!$user)
         {
             return response()->json(['message' => "User not found"]);
         }
         $user->name = 'updated name';
         $user->email = 'updated email';
-        $user->role_id = 1 ;
         $user->phone_no = '0980';
 //        $user->email = $request->get('email');
 //        $user->role_id = $request->get('role_id');

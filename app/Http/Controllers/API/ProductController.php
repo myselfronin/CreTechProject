@@ -17,9 +17,8 @@ class ProductController extends Controller
      *      @OA\Response(
      *          response="200",
      *          description="Everything is fine",
-     *
      *      )
-     * )
+     *)
      *
      * Display a listing of the resource.
      *
@@ -41,7 +40,6 @@ class ProductController extends Controller
      *      @OA\Response(
      *          response="200",
      *          description="Everything is fine",
-     *
      *      )
      * )
      *
@@ -69,7 +67,10 @@ class ProductController extends Controller
      *      @OA\Response(
      *          response="200",
      *          description="Everything is fine",
-     *
+     *      ),
+     *      @OA\Response(
+     *          response="404",
+     *          description="Product not found with that id",
      *      )
      * )
      *
@@ -81,8 +82,12 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::where('product_id', $id)->first();
+        if(!$product)
+        {
+            return response()->json('Product not found',404);
+        }
 
-        return response()->json($product);
+        return response()->json($product,200);
     }
 
     /**
@@ -94,7 +99,10 @@ class ProductController extends Controller
      *      @OA\Response(
      *          response="200",
      *          description="Everything is fine",
-     *
+     *      ),
+     *      @OA\Response(
+     *          response="404",
+     *          description="Product not found with that id",
      *      )
      * )
      *
@@ -104,7 +112,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::where('product_id',$id)->first();
+        if(!$product)
+        {
+            return response()->json('Product not found',404);
+        }
+
+        $product->amount = $request->get('amount');
+        $product->min_credit_amount = $request->get('min_credit_amount');
+
+        $product->save();
+
+        return response()->json('updated');
     }
 
     /**
@@ -117,9 +136,13 @@ class ProductController extends Controller
      *      @OA\Response(
      *          response="200",
      *          description="Everything is fine",
-     *
+     *      ),
+     *      @OA\Response(
+     *          response="404",
+     *          description="Product not found with that id",
      *      )
      * )
+     *
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -127,6 +150,10 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::where('product_id',$id);
+        if(!$product)
+        {
+            return response()->json('Product not found',404);
+        }
         $product->delete();
 
         return response('Deleted');

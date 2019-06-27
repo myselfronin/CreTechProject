@@ -17,9 +17,7 @@ class CreateRolesTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('role_id');
-            $table->string('role', 45)->nullable();
-            $table->timestamps();
-
+            $table->string('role', 45);
         });
     }
 

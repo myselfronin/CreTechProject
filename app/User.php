@@ -9,4 +9,10 @@ class User extends Model
 {
     protected $table='users';
     protected $guarded = [];
+    protected $primaryKey = 'user_id';
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
 }
