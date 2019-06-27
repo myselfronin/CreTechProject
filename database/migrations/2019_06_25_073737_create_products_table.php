@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('product_id');
+            $table->text('body')->nullable();
             $table->integer('product_owned_by');
             $table->integer('amount');
             $table->dateTime('product_valid_from')->nullable();

@@ -10,6 +10,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
     $users  = App\User::pluck('user_id')->toArray();
 
     return [
+        'body' => $faker->text(100),
         'product_owned_by' => $faker->randomElement($users),
         'amount' => $faker->numberBetween(1000,10000),
         'product_valid_from' => $date,

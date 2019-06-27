@@ -11,8 +11,8 @@
 |
 */
 
-//Route::get('/','LandingPageController@index');
-//Route::post('/user','API\UsersController@store')->name('user_register');
+Route::get('/','LandingPageController@index');
+//Route::post('/user','API\UserController@store')->name('user_register');
 //
 ////For creating role
 //Route::get('/role','API\RoleController@index');
