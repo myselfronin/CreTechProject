@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('product_id');
             $table->integer('product_owned_by');
             $table->integer('amount');
-            $table->dateTime('product_valid_from');
+            $table->dateTime('product_valid_from')->nullable();
             $table->integer('min_credit_amount');
             $table->string('region_of_interest', 45)->nullable();
             $table->text('interested_domain')->nullable();

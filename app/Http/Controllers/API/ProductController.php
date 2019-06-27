@@ -49,9 +49,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product;
-        $product->product_owned_by = $request->get('product_owned_by');
-        $product->amount = $request->get('amount');
-        $product->min_credit_amount = $request->get('min_credit_amount');
+        $product->product_owned_by = $request->input('product_owned_by');
+        $product->amount = $request->input('amount');
+        $product->min_credit_amount = $request->input('min_credit_amount');
 
         $product->save();
 
@@ -118,8 +118,8 @@ class ProductController extends Controller
             return response()->json('Product not found',404);
         }
 
-        $product->amount = $request->get('amount');
-        $product->min_credit_amount = $request->get('min_credit_amount');
+        $product->amount = $request->input('amount');
+        $product->min_credit_amount = $request->input('min_credit_amount');
 
         $product->save();
 

@@ -18,12 +18,8 @@ use Illuminate\Http\Request;
 //});
 
 
-Route::get('/users','UsersController@index');
-Route::post('/user','UsersController@store');
-Route::get('/user/{id}','UsersController@show');
-Route::put('/user/{id}', 'UsersController@update');
-Route::delete('/user/{id}','UsersController@destroy');
-
-
+Route::apiResource('users','API\UserController');
 Route::apiResource('products','API\ProductController');
 Route::apiResource('applications','API\ApplicationController');
+
+
